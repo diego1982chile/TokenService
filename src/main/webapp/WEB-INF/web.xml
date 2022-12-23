@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <login-config>
+        <realm-name>jdbcRealm</realm-name>
+    </login-config>
+    <security-role>
+        <role-name>ADMIN</role-name>
+    </security-role>
+    <security-role>
+        <role-name>USER</role-name>
+    </security-role>
+
+    <data-source>
+        <name>java:global/accountsDS</name>
+        <!--class-name>org.postgresql.ds.PGSimpleDataSource</class-name-->
+        <class-name>org.sqlite.SQLiteDataSource</class-name>
+        <url>jdbc:sqlite:accounts.db</url>
+    </data-source>
+</web-app>
