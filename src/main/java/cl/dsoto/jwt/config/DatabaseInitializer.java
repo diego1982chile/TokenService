@@ -75,8 +75,8 @@ public class DatabaseInitializer {
         List<Role> roles = roleRepository.findAll();
         List<User> users = userRepository.findAll();
 
-        Optional<User> admin = users.stream().filter(e -> e.getUsername().equals("admin")).findFirst();
-        Optional<User> user = users.stream().filter(e -> e.getUsername().equals("user")).findFirst();
+        Optional<User> admin = users.stream().filter(e -> e.getUsername().equals("diego.abelardo.soto@gmail.com")).findFirst();
+        Optional<User> user = users.stream().filter(e -> e.getUsername().equals("fca.herrer@gmail.com")).findFirst();
         Role adminRole = Role.builder().rolename("ADMIN").user(admin.get()).build();
         Role userRole = Role.builder().rolename("USER").user(user.get()).build();
 
@@ -113,7 +113,7 @@ public class DatabaseInitializer {
             System.out.println("Salt value = " + salt);
 
             User admin = User.builder()
-                    .username("admin")
+                    .username("diego.abelardo.soto@gmail.com")
                     .password(password)
                     .salt(salt)
                     //.roles(Arrays.asList(adminRole.get(), userRole.get()))
@@ -134,7 +134,7 @@ public class DatabaseInitializer {
             System.out.println("Salt value = " + salt);
 
             User user = User.builder()
-                    .username("user")
+                    .username("fca.herrer@gmail.com")
                     .password(password)
                     .salt(salt)
                     //.roles(Arrays.asList(userRole.get()))

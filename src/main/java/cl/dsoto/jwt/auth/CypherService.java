@@ -35,7 +35,8 @@ public class CypherService {
         token.setUpn(subject);
 
         token.setIat(System.currentTimeMillis());
-        token.setExp(System.currentTimeMillis() + 7*24*60*60*1000); // 1 week expiration!
+        //token.setExp(System.currentTimeMillis() + 7*24*60*60*1000); // 1 week expiration!
+        token.setExp(System.currentTimeMillis() + 60*60*1000); // 1 hour expiration!
 
         token.setGroups(groups);
 
