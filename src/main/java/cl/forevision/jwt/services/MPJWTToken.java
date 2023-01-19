@@ -1,4 +1,4 @@
-package cl.dsoto.jwt.auth;
+package cl.forevision.jwt.services;
 
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;

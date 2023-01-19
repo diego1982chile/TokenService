@@ -10,8 +10,6 @@
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:accounts.db"/>
-            <property name="javax.persistence.jdbc.driver" value="org.sqlite.SQLiteDataSource"/>
             <!--property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/-->
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
             <property name="javax.persistence.schema-generation.create-source" value="metadata"/>

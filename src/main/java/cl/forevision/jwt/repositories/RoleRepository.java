@@ -1,7 +1,7 @@
-package cl.dsoto.jwt.repositories;
+package cl.forevision.jwt.repositories;
 
 
-import cl.dsoto.jwt.entities.Role;
+import cl.forevision.jwt.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

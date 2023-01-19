@@ -17,7 +17,10 @@
     <data-source>
         <name>java:global/accountsDS</name>
         <!--class-name>org.postgresql.ds.PGSimpleDataSource</class-name-->
-        <class-name>org.sqlite.SQLiteDataSource</class-name>
-        <url>jdbc:sqlite:accounts.db</url>
+        <!--class-name>org.sqlite.SQLiteDataSource</class-name-->
+        <!--url>jdbc:sqlite:accounts.db</url-->
+        <class-name>oracle.jdbc.pool.OracleDataSource</class-name>
+        <!--url>jdbc:oracle:thin:@192.168.0.14:1521/pdbscrapper</url-->
+        <url>jdbc:oracle:thin:@scrapper_high?TNS_ADMIN=${ENV=TNS_ADMIN}</url>
     </data-source>
 </web-app>

@@ -1,12 +1,11 @@
-package cl.dsoto.jwt.config;
+package cl.forevision.jwt.config;
 
-import cl.dsoto.jwt.entities.Role;
-import cl.dsoto.jwt.entities.User;
-import cl.dsoto.jwt.repositories.RoleRepository;
-import cl.dsoto.jwt.repositories.UserRepository;
-import cl.dsoto.jwt.util.PasswordUtils;
+import cl.forevision.jwt.entities.Role;
+import cl.forevision.jwt.entities.User;
+import cl.forevision.jwt.repositories.RoleRepository;
+import cl.forevision.jwt.repositories.UserRepository;
+import cl.forevision.jwt.util.PasswordUtils;
 import lombok.extern.log4j.Log4j;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 import org.springframework.data.repository.core.support.RepositoryFactorySupport;
 
@@ -21,14 +20,11 @@ import javax.transaction.Transactional;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
 
 /**
  * Created by root on 09-12-22.
@@ -57,7 +53,7 @@ public class DatabaseInitializer {
         this.userRepository = factory.getRepository(UserRepository.class);
         this.roleRepository = factory.getRepository(RoleRepository.class);
 
-        executeScripts();
+        //executeScripts();
         initUsers();
         initRoles();
     }
@@ -94,8 +90,6 @@ public class DatabaseInitializer {
 
         Optional<Role> adminRole = roles.stream().filter(e -> e.getRolename().equals("ADMIN")).findAny();
         Optional<Role> userRole = roles.stream().filter(e -> e.getRolename().equals("USER")).findAny();
-
-
 
 
         if(users.isEmpty()) {

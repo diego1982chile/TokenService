@@ -57,8 +57,9 @@
             <property name="URL" value="jdbc:h2:${com.sun.aas.instanceRoot}/lib/databases/embedded_default;AUTO_SERVER=TRUE"/>
         </jdbc-connection-pool>
         <!--custom connection pool-->
-        <jdbc-connection-pool datasource-classname="org.sqlite.SQLiteDataSource" name="accountsDS" res-type="javax.sql.DataSource">
-            <property name="URL" value="jdbc:sqlite:accounts.db"/>
+        <jdbc-connection-pool datasource-classname="oracle.jdbc.pool.OracleDataSource" name="accountsDS" res-type="javax.sql.DataSource">
+            <!--property name="URL" value="jdbc:sqlite:accounts.db"/-->
+            <property name="URL" value="jdbc:oracle:thin:@scrapper_high?TNS_ADMIN=${ENV=TNS_ADMIN}"/>
         </jdbc-connection-pool>
         <jdbc-resource pool-name="accountsDS" jndi-name="java:global/accountsDS"></jdbc-resource>
         <!--custom connection pool-->
@@ -114,11 +115,11 @@
             </monitoring-service-configuration>
             <microprofile-metrics-configuration/>
             <security-service activate-default-principal-to-role-mapping="true" jacc="simple">
-                <!--custom auth-realm-->
+                <!--custom services-realm-->
                 <auth-realm classname="com.sun.enterprise.security.auth.realm.jdbc.JDBCRealm" name="jdbcRealm">
                     <property name="jaas-context" value="jdbcRealm"></property>
                     <property name="datasource-jndi" value="java:global/accountsDS"></property>
-                    <property name="user-table" value="user"></property>
+                    <property name="user-table" value="users"></property>
                     <property name="user-name-column" value="username"></property>
                     <property name="password-column" value="password"></property>
                     <property name="group-table" value="role"></property>
@@ -128,7 +129,7 @@
                     <property name="charset" value="UTF-8"></property>
                     <property name="encoding" value="Hex"></property>
                 </auth-realm>
-                <!--custom auth-realm-->
+                <!--custom services-realm-->
                 <auth-realm classname="com.sun.enterprise.security.auth.realm.file.FileRealm" name="admin-realm">
                     <property value="${com.sun.aas.instanceRoot}/config/admin-keyfile" name="file"/>
                     <property value="fileRealm" name="jaas-context"/>

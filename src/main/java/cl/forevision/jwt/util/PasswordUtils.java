@@ -1,4 +1,4 @@
-package cl.dsoto.jwt.util;
+package cl.forevision.jwt.util;
 
 /**
  * Created by root on 25-08-21.

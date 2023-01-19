@@ -1,4 +1,4 @@
-package cl.dsoto.jwt.entities;
+package cl.forevision.jwt.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "role")
+@Table
 public class Role {
 
 

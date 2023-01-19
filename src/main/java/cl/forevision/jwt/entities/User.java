@@ -1,4 +1,4 @@
-package cl.dsoto.jwt.entities;
+package cl.forevision.jwt.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "USERS")
 public class User {
 
     /*

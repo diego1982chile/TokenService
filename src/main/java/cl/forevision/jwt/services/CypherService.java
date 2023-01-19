@@ -1,4 +1,4 @@
-package cl.dsoto.jwt.auth;
+package cl.forevision.jwt.services;
 
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.RSASSASigner;
@@ -23,12 +23,12 @@ public class CypherService {
     public static String generateJWT(PrivateKey key, String subject, List<String> groups) {
         JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.RS256)
                 .type(JOSEObjectType.JWT)
-                .keyID("burgerKey")
+                .keyID("apisKey")
                 .build();
 
         MPJWTToken token = new MPJWTToken();
-        token.setAud("burgerGt");
-        token.setIss("https://burger.nabenik.com");  // Must match the expected issues configuration values
+        token.setAud("apisGt");
+        token.setIss("https://apis.forevision.cl");  // Must match the expected issues configuration values
         token.setJti(UUID.randomUUID().toString());
 
         token.setSub(subject);

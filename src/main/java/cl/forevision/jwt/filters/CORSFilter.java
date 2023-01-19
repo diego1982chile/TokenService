@@ -1,4 +1,4 @@
-package cl.dsoto.jwt.filters;
+package cl.forevision.jwt.filters;
 
 import javax.inject.Named;
 import javax.ws.rs.container.ContainerRequestContext;

@@ -1,4 +1,4 @@
-package cl.dsoto.jwt.auth;
+package cl.forevision.jwt.services;
 
 /**
  * Created by root on 09-12-22.

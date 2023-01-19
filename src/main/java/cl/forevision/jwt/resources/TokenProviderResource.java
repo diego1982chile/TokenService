@@ -1,11 +1,9 @@
-package cl.dsoto.jwt.controller;
+package cl.forevision.jwt.resources;
 
-import cl.dsoto.jwt.auth.CypherService;
-import cl.dsoto.jwt.auth.RolesEnum;
-import cl.dsoto.jwt.entities.Role;
-import cl.dsoto.jwt.entities.User;
-import cl.dsoto.jwt.repositories.RoleRepository;
-import cl.dsoto.jwt.repositories.UserRepository;
+import cl.forevision.jwt.services.CypherService;
+import cl.forevision.jwt.entities.Role;
+import cl.forevision.jwt.entities.User;
+import cl.forevision.jwt.repositories.RoleRepository;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 import org.springframework.data.repository.core.support.RepositoryFactorySupport;
 
@@ -87,7 +85,7 @@ public class TokenProviderResource {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
 
-        String token = cypherService.generateJWT(key, user.getUsername(), target);
+        String token = CypherService.generateJWT(key, user.getUsername(), target);
 
         Map<String, String> jwt = new HashMap<>();
         jwt.put("token", token);

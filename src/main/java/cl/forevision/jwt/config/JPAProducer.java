@@ -1,4 +1,4 @@
-package cl.dsoto.jwt.config;
+package cl.forevision.jwt.config;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
