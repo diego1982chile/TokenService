@@ -16,17 +16,18 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table
-public class Role {
-
+public class Role extends AbstractPersistableEntity<String> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     String rolename;
 
-    @ManyToOne
-    @JoinColumn(name = "user_username")
-    User user;
+    @Override
+    public String getId() {
+        return rolename;
+    }
 
+    @Override
+    public String toString() {
+        return rolename;
+    }
 }

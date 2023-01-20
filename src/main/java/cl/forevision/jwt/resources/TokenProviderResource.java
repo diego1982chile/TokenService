@@ -12,12 +12,15 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.security.auth.callback.CallbackHandler;
+import javax.security.auth.login.LoginContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import java.io.IOException;
 import java.security.PrivateKey;
 import java.util.ArrayList;
@@ -47,6 +50,10 @@ public class TokenProviderResource {
     private Role ADMIN, USER;
 
 
+    @Context
+    SecurityContext securityContext;
+
+
     @PostConstruct
     public void init() {
         try {
@@ -72,6 +79,7 @@ public class TokenProviderResource {
         List<String> target = new ArrayList<>();
 
         try {
+
             request.login(user.getUsername(), user.getPassword());
 
             if (request.isUserInRole(ADMIN.getRolename()))

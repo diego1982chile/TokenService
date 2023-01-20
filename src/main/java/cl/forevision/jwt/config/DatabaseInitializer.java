@@ -23,6 +23,8 @@ import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,12 +71,9 @@ public class DatabaseInitializer {
     @Transactional
     private void initRoles() {
         List<Role> roles = roleRepository.findAll();
-        List<User> users = userRepository.findAll();
 
-        Optional<User> admin = users.stream().filter(e -> e.getUsername().equals("diego.abelardo.soto@gmail.com")).findFirst();
-        Optional<User> user = users.stream().filter(e -> e.getUsername().equals("fca.herrer@gmail.com")).findFirst();
-        Role adminRole = Role.builder().rolename("ADMIN").user(admin.get()).build();
-        Role userRole = Role.builder().rolename("USER").user(user.get()).build();
+        Role adminRole = Role.builder().rolename("ADMIN").build();
+        Role userRole = Role.builder().rolename("USER").build();
 
         if(roles.isEmpty()) {
             roleRepository.save(adminRole);
@@ -88,8 +87,8 @@ public class DatabaseInitializer {
         List<User> users = userRepository.findAll();
         List<Role> roles = roleRepository.findAll();
 
-        Optional<Role> adminRole = roles.stream().filter(e -> e.getRolename().equals("ADMIN")).findAny();
-        Optional<Role> userRole = roles.stream().filter(e -> e.getRolename().equals("USER")).findAny();
+        Role adminRole = Role.builder().rolename("ADMIN").build();
+        Role userRole = Role.builder().rolename("USER").build();
 
 
         if(users.isEmpty()) {
@@ -110,7 +109,7 @@ public class DatabaseInitializer {
                     .username("diego.abelardo.soto@gmail.com")
                     .password(password)
                     .salt(salt)
-                    //.roles(Arrays.asList(adminRole.get(), userRole.get()))
+                    .roles(Arrays.asList(adminRole, userRole))
                     .build();
 
             userRepository.save(admin);
@@ -131,7 +130,7 @@ public class DatabaseInitializer {
                     .username("fca.herrer@gmail.com")
                     .password(password)
                     .salt(salt)
-                    //.roles(Arrays.asList(userRole.get()))
+                    .roles(Collections.singletonList(userRole))
                     .build();
 
             userRepository.save(user);

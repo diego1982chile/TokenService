@@ -1,4 +1,6 @@
-package cl.forevision.jwt.resources;
+package cl.forevision.jwt.config;
+
+import org.eclipse.microprofile.auth.LoginConfig;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Created by root on 09-12-22.
@@ -17,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "USERS")
-public class User {
+public class User extends AbstractPersistableEntity<String> {
 
     /*
     @Id
@@ -32,13 +34,16 @@ public class User {
 
     private String salt;
 
-    //@OneToMany
-    //private List<Role> roles;
+    @Override
+    public String getId() {
+        return username;
+    }
 
-    /*
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_username"), inverseJoinColumns = @JoinColumn(name = "role_rolename"))
     private List<Role> roles;
-    */
+
+
 
 }

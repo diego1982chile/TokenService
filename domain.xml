@@ -122,8 +122,8 @@
                     <property name="user-table" value="users"></property>
                     <property name="user-name-column" value="username"></property>
                     <property name="password-column" value="password"></property>
-                    <property name="group-table" value="role"></property>
-                    <property name="group-name-column" value="rolename"></property>
+                    <property name="group-table" value="user_role"></property>
+                    <property name="group-name-column" value="role_rolename"></property>
                     <property name="group-table-user-name-column" value="user_username"></property>
                     <property name="digest-algorithm" value="SHA-256"></property>
                     <property name="charset" value="UTF-8"></property>
