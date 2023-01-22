@@ -38,19 +38,14 @@ public class RoleService {
 
     @Transactional
     public Role saveRole(Role role) {
-        if(role.isPersisted()) {
-            Role previous = roleRepository.findByRolename(role.getId());
-            previous.setRolename(role.getRolename());
-            /*
-            if(retailer.getSchedules() != null) {
-                previous.setSchedules(retailer.getSchedules());
-            }
-            */
-            return roleRepository.save(previous);
-        }
-        else {
-            return roleRepository.save(role);
-        }
+        return roleRepository.save(role);
+    }
+
+    @Transactional
+    public Role updateRole(Role role) {
+        Role previous = roleRepository.findByRolename(role.getPreviousRolename());
+        roleRepository.delete(previous);
+        return roleRepository.save(role);
     }
 
     @Transactional

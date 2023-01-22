@@ -67,7 +67,7 @@ public class UserResource {
     public Response deleteUser(@PathParam("id") String id) {
         try {
             userService.deleteUser(id);
-            return Response.ok(id).build();
+            return Response.ok().build();
         }
         catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());

@@ -60,12 +60,25 @@ public class RoleResource {
         return Response.serverError().build();
     }
 
+    @PUT
+    @Path("update")
+    public Response updateRole(Role role) {
+        try {
+            Role newRole = roleService.updateRole(role);
+            return Response.ok(newRole).build();
+        }
+        catch (Exception e) {
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        return Response.serverError().build();
+    }
+
     @DELETE
     @Path("delete/{id}")
     public Response deleteUser(@PathParam("id") String id) {
         try {
             roleService.deleteRole(id);
-            return Response.ok(id).build();
+            return Response.ok().build();
         }
         catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());

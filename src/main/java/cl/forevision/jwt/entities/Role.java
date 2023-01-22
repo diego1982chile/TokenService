@@ -21,6 +21,8 @@ public class Role extends AbstractPersistableEntity<String> {
     @Id
     String rolename;
 
+    String previousRolename;
+
     @Override
     public String getId() {
         return rolename;

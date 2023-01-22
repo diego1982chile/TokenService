@@ -28,7 +28,7 @@ public class CypherService {
 
         MPJWTToken token = new MPJWTToken();
         token.setAud("apisGt");
-        token.setIss("https://apis.forevision.cl");  // Must match the expected issues configuration values
+        token.setIss("https://apis.internal.forevision.cl");  // Must match the expected issues configuration values
         token.setJti(UUID.randomUUID().toString());
 
         token.setSub(subject);

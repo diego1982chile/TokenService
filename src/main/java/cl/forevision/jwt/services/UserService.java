@@ -38,8 +38,10 @@ public class UserService {
 
     @Transactional
     public User saveUser(User user) {
-        if(user.isPersisted()) {
-            User previous = userRepository.findByUsername(user.getId());
+
+        User previous = userRepository.findByUsername(user.getId());
+
+        if(previous != null) {
             if(user.getPassword() != null) {
                 previous.setPassword(user.getPassword());
             }
