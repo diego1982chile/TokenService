@@ -23,5 +23,8 @@
         <class-name>oracle.jdbc.pool.OracleDataSource</class-name>
         <!--url>jdbc:oracle:thin:@192.168.0.14:1521/pdbscrapper</url-->
         <url>jdbc:oracle:thin:@scrapper_high?TNS_ADMIN=${ENV=TNS_ADMIN}</url>
+        <initial-pool-size>2</initial-pool-size>
+        <max-pool-size>5</max-pool-size>
+        <min-pool-size>2</min-pool-size>
     </data-source>
 </web-app>
