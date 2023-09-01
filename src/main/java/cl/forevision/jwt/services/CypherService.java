@@ -1,7 +1,9 @@
 package cl.forevision.jwt.services;
 
+import cl.forevision.jwt.resources.RoleResource;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.RSASSASigner;
+import lombok.extern.log4j.Log4j;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.openssl.PEMKeyPair;
 import org.bouncycastle.openssl.PEMParser;
@@ -14,11 +16,15 @@ import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by root on 09-12-22.
  */
+@Log4j
 public class CypherService {
+
 
     public static String generateJWT(PrivateKey key, String subject, List<String> groups) {
         JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.RS256)
@@ -48,7 +54,7 @@ public class CypherService {
         try {
             jwsObject.sign(signer);
         } catch (JOSEException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
 
         return jwsObject.serialize();

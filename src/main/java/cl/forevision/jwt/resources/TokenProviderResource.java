@@ -4,10 +4,12 @@ import cl.forevision.jwt.services.CypherService;
 import cl.forevision.jwt.entities.Role;
 import cl.forevision.jwt.entities.User;
 import cl.forevision.jwt.repositories.RoleRepository;
+import lombok.extern.log4j.Log4j;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 import org.springframework.data.repository.core.support.RepositoryFactorySupport;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
@@ -27,14 +29,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static javax.ws.rs.core.HttpHeaders.AUTHORIZATION;
 
 /**
  * Created by root on 09-12-22.
  */
-@Singleton
+@ApplicationScoped
 @Path("/auth")
+@Log4j
 public class TokenProviderResource {
 
     @Inject
@@ -67,7 +72,7 @@ public class TokenProviderResource {
             ADMIN = roles.stream().filter(e -> e.getRolename().equals("ADMIN")).findAny().get();
             USER = roles.stream().filter(e -> e.getRolename().equals("USER")).findAny().get();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
     }
 
@@ -89,7 +94,8 @@ public class TokenProviderResource {
                 target.add(USER.getRolename());
 
         } catch (ServletException ex) {
-            ex.printStackTrace();
+            log.error(ex.getMessage());
+
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
 

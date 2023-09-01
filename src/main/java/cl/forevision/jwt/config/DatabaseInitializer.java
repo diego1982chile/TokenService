@@ -56,6 +56,7 @@ public class DatabaseInitializer {
         this.roleRepository = factory.getRepository(RoleRepository.class);
 
         //executeScripts();
+        initUsers();
         initRoles();
     }
 
@@ -65,6 +66,63 @@ public class DatabaseInitializer {
             executeScript("user.sql");
             executeScript("role.sql");
         }
+    }
+
+    @Transactional
+    private void initUsers() {
+        List<User> users = userRepository.findAll();
+        List<Role> roles = roleRepository.findAll();
+
+        Role adminRole = Role.builder().rolename("ADMIN").build();
+        Role userRole = Role.builder().rolename("USER").build();
+
+
+        if(users.isEmpty()) {
+
+            String password = "123";
+
+            // Generate Salt. The generated value can be stored in DB.
+            String salt = PasswordUtils.getSalt(30);
+
+            // Protect user's password. The generated value can be stored in DB.
+            password = PasswordUtils.generateSecurePassword(password);
+
+            // Print out protected password
+            System.out.println("My secure password = " + password);
+            System.out.println("Salt value = " + salt);
+
+            User admin = User.builder()
+                    .username("diego.abelardo.soto@gmail.com")
+                    .password(password)
+                    .salt(salt)
+                    .roles(Arrays.asList(adminRole, userRole))
+                    .build();
+
+            userRepository.save(admin);
+
+            password = "456";
+
+            // Generate Salt. The generated value can be stored in DB.
+            salt = PasswordUtils.getSalt(30);
+
+            // Protect user's password. The generated value can be stored in DB.
+            password = PasswordUtils.generateSecurePassword(password);
+
+            // Print out protected password
+            System.out.println("My secure password = " + password);
+            System.out.println("Salt value = " + salt);
+
+            User user = User.builder()
+                    .username("fca.herrer@gmail.com")
+                    .password(password)
+                    .salt(salt)
+                    .roles(Collections.singletonList(userRole))
+                    .build();
+
+            userRepository.save(user);
+
+        }
+
     }
 
     @Transactional
